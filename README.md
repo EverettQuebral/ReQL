@@ -472,6 +472,39 @@ mutation {
 ```
 If you look closely at the result, the object that we are interested is the **data** while the **extensions** are important and why it's showing up is because of the config properties we set in the **graphqlExpress** handler **tracing** and **cacheControl**.  Starting from this point I'll just omit those values so we can focus only on the necessary parts.
 
+Before we end this section, let's just take a look back at the resolver for the User
+```javascript
+// some code removed
+export default {
+  Query: {
+    findUser: (root, args, context) => {
+      const id = args.id;
+      const user = find(myFavoriteArtists, { 'id' : id });
+      return user;
+    },
+    getUsers: (root, args, context) => {
+      return myFavoriteArtists;
+    }
+  },
+  Mutation: {
+    addUser: (root, args, context) => {
+      const user = args.input;
+      myFavoriteArtist.push(user);
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User');
+      return statusMessage;
+    }
+  }
+}
+```
+In **graphqlExpress**, the handlers for the **Query** and **Mutation** will receive a couple of parameters like *root*, *args*, *context*, etc but the most important are what's mentioned here.
+* *args* let's us pass the payload just like in the example, we passed in the UserInput
+* *context* is when we can pass headers, request, session information.  Also a good place to pass API_KEY and such
+
+And lastly it returned a *statusMessage*
+
+So there's nothing really fancy here.  
+
+
 
 
 
