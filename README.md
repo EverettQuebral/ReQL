@@ -183,7 +183,7 @@ type Mutation {
 As I have said, we're not going to dig deep into graphql schemas and types but it's fairly easy to understand that we have a couple of types which defines the **User**, **Query**, and **Mutation**, the input type is a special type where it is used for the post mechanism in adding new users tha will be facilitated by the **Mutation**
 
 Now let's take a look at the resolver for the users.graphql
-```javascript {.line-number}
+```javascript class:"lineNo"
 import { find } from 'lodash';
 import { 
   User,
