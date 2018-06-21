@@ -153,7 +153,7 @@ But before we dig into schema.js, let's focus on the /schemas directory where al
     * user.js
 
 The structure above gives us a little bit of detail on how the application is structured so far.  Now let's look at the *graphql* files where we define the types.
-```graphql
+```javascript
 type User {
     id: ID!
     first_name: String!
@@ -227,14 +227,253 @@ export default {
   },
   Mutation: {
     addUser: (root, args, context) => {
-      console.log('ARGs', args);
       const user = args.input;
+      myFavoriteArtist.push(user);
       const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User');
       return statusMessage;
     }
   }
 }
 ```
+The code above simply defines a couple of depencies like the common objects that are needed.  For example we need the User Object, UserInput Object and so on and so forth so let's just add the whole code that we imported and it should look like this
+```javascript
+export class User {
+  constructor(firstName, lastName, address, email, password){
+    this.id = id;
+    this.first_name = firstName;
+    this.last_name = lastName;
+    this.address = address;
+    this.email = email;
+    this.password = password;
+  }
+}
+
+export class UserInput extends User {
+  constructor(firstName, lastName, address, email, password){
+    super(firstname, lastname, address, email, password);
+  }
+}
+
+export class UserInputMessage {
+  constructor(status, description){
+    this.status = status;
+    this.description = description;
+  }
+}
+
+export class StatusMessage {
+  constructor(status_code, message, description){
+    this.status_code = status_code;
+    this.message = message;
+    this.description = description || message;
+  }
+}
+
+export class Address {
+  constructor(address1, address2, city, state, zip, country){
+    this.address1 = address1;
+    this.address2 = address2;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
+    this.country = country;
+  }
+}
+
+export class AddressInput extends Address {
+  constructor(address1, address2, city, state, zip, country){
+    super(address1, address2, city, state, zip, country);
+  }
+}
+```
+
+Now let's go and break it down to what we currently have.  In the **user.graphql** we have defined a type for **User**, a type of **Query**, and input and a type of **Mutation**.  These requires objects and thus we imported the code above to instantiate the values that are passed specially for the Mutation.  If we are going to execute assuming that we have all that is necessary for the application to run, then we'll have something like this.
+```javascript
+query {
+  getUsers {
+    first_name
+  }
+}
+
+// returns
+{
+  "data": {
+    "getUsers": [
+      {
+        "first_name": "Michael"
+      },
+      {
+        "first_name": "Bruno"
+      },
+      {
+        "first_name": "Lady"
+      },
+      {
+        "first_name": "Madonna"
+      }
+    ]
+  },
+  "extensions": {
+    "tracing": {
+      "version": 1,
+      "startTime": "2018-06-21T20:16:58.022Z",
+      "endTime": "2018-06-21T20:16:58.023Z",
+      "duration": 1165831,
+      "execution": {
+        "resolvers": [
+          {
+            "path": [
+              "getUsers"
+            ],
+            "parentType": "Query",
+            "fieldName": "getUsers",
+            "returnType": "[User]",
+            "startOffset": 382602,
+            "duration": 591695
+          },
+          {
+            "path": [
+              "getUsers",
+              0,
+              "first_name"
+            ],
+            "parentType": "User",
+            "fieldName": "first_name",
+            "returnType": "String!",
+            "startOffset": 1019010,
+            "duration": 29167
+          },
+          {
+            "path": [
+              "getUsers",
+              1,
+              "first_name"
+            ],
+            "parentType": "User",
+            "fieldName": "first_name",
+            "returnType": "String!",
+            "startOffset": 1066887,
+            "duration": 17632
+          },
+          {
+            "path": [
+              "getUsers",
+              2,
+              "first_name"
+            ],
+            "parentType": "User",
+            "fieldName": "first_name",
+            "returnType": "String!",
+            "startOffset": 1097281,
+            "duration": 8989
+          },
+          {
+            "path": [
+              "getUsers",
+              3,
+              "first_name"
+            ],
+            "parentType": "User",
+            "fieldName": "first_name",
+            "returnType": "String!",
+            "startOffset": 1122312,
+            "duration": 20805
+          }
+        ]
+      }
+    },
+    "cacheControl": {
+      "version": 1,
+      "hints": [
+        {
+          "path": [
+            "getUsers"
+          ],
+          "maxAge": 0
+        }
+      ]
+    }
+  }
+}
+```
+And if we try to add a new user using the **Mutation** 
+```javascript
+mutation {
+  addUser(input:{
+    first_name: "Larry"
+    last_name: "Bird"
+    email: "larry@bird.com"
+    password: "somesecrethere"
+    address:{
+      address1: "1st Street"
+      address2: ""
+      city: "Boston"
+      state: "MA"
+      zip: "64848"
+      country: "USA"
+    }
+  }){
+    message
+  }
+}
+
+//result
+{
+  "data": {
+    "addUser": {
+      "message": "SUCCESS"
+    }
+  },
+  "extensions": {
+    "tracing": {
+      "version": 1,
+      "startTime": "2018-06-21T20:50:33.931Z",
+      "endTime": "2018-06-21T20:50:33.938Z",
+      "duration": 7040854,
+      "execution": {
+        "resolvers": [
+          {
+            "path": [
+              "addUser"
+            ],
+            "parentType": "Mutation",
+            "fieldName": "addUser",
+            "returnType": "StatusMessage",
+            "startOffset": 2922369,
+            "duration": 4004128
+          },
+          {
+            "path": [
+              "addUser",
+              "message"
+            ],
+            "parentType": "StatusMessage",
+            "fieldName": "message",
+            "returnType": "String!",
+            "startOffset": 6980357,
+            "duration": 27173
+          }
+        ]
+      }
+    },
+    "cacheControl": {
+      "version": 1,
+      "hints": [
+        {
+          "path": [
+            "addUser"
+          ],
+          "maxAge": 0
+        }
+      ]
+    }
+  }
+}
+```
+If you look closely at the result, the object that we are interested is the **data** while the **extensions** are important and why it's showing up is because of the config properties we set in the **graphqlExpress** handler **tracing** and **cacheControl**.  Starting from this point I'll just omit those values so we can focus only on the necessary parts.
+
+
+
 
 
 
