@@ -15,6 +15,8 @@ The **GraphQL** should be in the server where it will connected to the necessary
 
 Let's assume that the starting point for the server is *server.js* then this is how it's going to look like.
 
+### server.js
+
 ```javascript {.line-numbers}
 const express = require("express")
 const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
@@ -132,6 +134,109 @@ app.listen(PORT, () =>{
   console.log(`View GraphiQL at http://localhost:${PORT}/graphiql`);
 });
 ```
+
+That should be our *server.js* and enough to serve traffic for /graphql and /graphiql.  
+
+### schema.js
+Notice that we imported the schema and added it to the configuration when we defined the **graphqlExpress** in the server.js.  This schema is the result of merging the resolvers and type definition for GraphQL.  Please feel free to read about [GraphQL Schemas and Types (https://graphql.org/learn/schema/)] as we will not discuss those topics here but we will just create the schemas and types that will import for the configuration.
+
+But before we dig into schema.js, let's focus on the /schemas directory where all the schemas are defined.  The /schemas directory should be shared by the client and server application therefore it make sense to put in under the root directory.
+
+* /server
+    * server.js
+    * schema.js
+* /client
+    * client.js
+* /schemas
+    * user.graphql
+* /resolvers
+    * user.js
+
+The structure above gives us a little bit of detail on how the application is structured so far.  Now let's look at the *graphql* files where we define the types.
+```graphql
+type User {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    address: Address
+    email: String!
+    password: String!
+}
+
+type Query {
+    findUser(id: ID!): User
+    getUsers: [User]
+}
+
+input UserInput {
+    first_name: String!
+    last_name: String!
+    address: AddressInput!
+    email: String!
+    password: String!
+}
+
+type Mutation {
+    addUser(input: UserInput): StatusMessage
+}
+```
+As I have said, we're not going to dig deep into graphql schemas and types but it's fairly easy to understand that we have a couple of types which defines the **User**, **Query**, and **Mutation**, the input type is a special type where it is used for the post mechanism in adding new users tha will be facilitated by the **Mutation**
+
+Now let's take a look at the resolver for the users.graphql
+```javascript {.line-number}
+import { find } from 'lodash';
+import { 
+  User,
+  UserInput,
+  UserInputMessage,
+  Address, 
+  AddressInput,
+  StatusMessage 
+} from '../common/index';
+
+
+const myFavoriteArtists = [
+  {
+    id: "xxxx",
+    first_name: "Michael",
+    last_name: "Jackson",
+    address: "Los Angeles",
+    email: "michael@jackson.com",
+    password: "secret"
+  },
+  {
+    id: "yyyy",
+    first_name: "Bruno",
+    last_name: "Mars",
+    address: "Hawaii",
+    email: "bruno@mars.com",
+    password: "secret secret"
+  }
+];
+
+export default {
+  Query: {
+    findUser: (root, args, context) => {
+      const id = args.id;
+      const user = find(myFavoriteArtists, { 'id' : id });
+      return user;
+    },
+    getUsers: (root, args, context) => {
+      return myFavoriteArtists;
+    }
+  },
+  Mutation: {
+    addUser: (root, args, context) => {
+      console.log('ARGs', args);
+      const user = args.input;
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User');
+      return statusMessage;
+    }
+  }
+}
+```
+
+
 
 
 
