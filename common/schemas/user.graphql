@@ -1,0 +1,25 @@
+type User {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    address: Address
+    email: String!
+    password: String!
+}
+
+type Query {
+    findUser(id: ID!): User
+    getUsers: [User]
+}
+
+input UserInput {
+    first_name: String!
+    last_name: String!
+    address: AddressInput!
+    email: String!
+    password: String!
+}
+
+type Mutation {
+    addUser(input: UserInput): StatusMessage
+}
