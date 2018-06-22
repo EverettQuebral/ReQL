@@ -152,6 +152,7 @@ But before we dig into schema.js, let's focus on the /schemas directory where al
 * /resolvers
     * user.js
 
+### Schema and Types
 The structure above gives us a little bit of detail on how the application is structured so far.  Now let's look at the *graphql* files where we define the types.
 ```javascript
 type User {
@@ -423,50 +424,6 @@ mutation {
     "addUser": {
       "message": "SUCCESS"
     }
-  },
-  "extensions": {
-    "tracing": {
-      "version": 1,
-      "startTime": "2018-06-21T20:50:33.931Z",
-      "endTime": "2018-06-21T20:50:33.938Z",
-      "duration": 7040854,
-      "execution": {
-        "resolvers": [
-          {
-            "path": [
-              "addUser"
-            ],
-            "parentType": "Mutation",
-            "fieldName": "addUser",
-            "returnType": "StatusMessage",
-            "startOffset": 2922369,
-            "duration": 4004128
-          },
-          {
-            "path": [
-              "addUser",
-              "message"
-            ],
-            "parentType": "StatusMessage",
-            "fieldName": "message",
-            "returnType": "String!",
-            "startOffset": 6980357,
-            "duration": 27173
-          }
-        ]
-      }
-    },
-    "cacheControl": {
-      "version": 1,
-      "hints": [
-        {
-          "path": [
-            "addUser"
-          ],
-          "maxAge": 0
-        }
-      ]
-    }
   }
 }
 ```
@@ -500,9 +457,11 @@ In **graphqlExpress**, the handlers for the **Query** and **Mutation** will rece
 * *args* let's us pass the payload just like in the example, we passed in the UserInput
 * *context* is when we can pass headers, request, session information.  Also a good place to pass API_KEY and such
 
-And lastly it returned a *statusMessage*
+And lastly it returned a *statusMessage* where it says **SUCCESS**
 
-So there's nothing really fancy here.  
+
+
+
 
 
 

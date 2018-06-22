@@ -7,7 +7,7 @@ const cors = require('cors')
 // for websocket support
 
 
-import { schema } from './schema';
+import { schema } from '../schema';
 import { request } from "https";
 
 const PORT = process.env.PORT || 3000;

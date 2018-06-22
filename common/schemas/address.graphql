@@ -1,0 +1,30 @@
+type Address {
+  id: ID!
+  address1: String!
+  address2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+fragment addressDetails on Address {
+  address1
+  city
+  state
+  zip
+}
+
+input AddressInput {
+  address1: String!
+  address2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+type Query {
+  address: Address!
+}
+

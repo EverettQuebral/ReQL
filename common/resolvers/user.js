@@ -6,7 +6,7 @@ import {
   Address, 
   AddressInput,
   StatusMessage 
-} from '../common/index';
+} from '../../common/index';
 
 
 const myFavoriteArtists = [
