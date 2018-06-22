@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+import { find } from 'lodash'
 import { 
   User,
   UserInput,
@@ -6,7 +6,7 @@ import {
   Address, 
   AddressInput,
   StatusMessage 
-} from '../../common/index';
+} from '../../common/index'
 
 
 const myFavoriteArtists = [

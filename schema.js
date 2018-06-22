@@ -7,14 +7,8 @@ import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
 const typesArray = fileLoader(path.join(__dirname, './common/schemas'))
 const typeDefs = mergeTypes(typesArray, { all : true })
 
-// for some reason, the fileLoader is not working for the resolvers
-// const resolversArray = fileLoader(path.join(__dirname, './resolvers'));
-// const resolvers = mergeResolvers(resolversArray);
-
-// for now, individually add the resolvers
-import UserResolver from './common/resolvers/user'
-const resolvers = [ UserResolver ]
-
+const resolversArray = fileLoader(path.join(__dirname, './common/resolvers'));
+const resolvers = mergeResolvers(resolversArray);
 
 console.log("Resolvers ", resolvers)
 

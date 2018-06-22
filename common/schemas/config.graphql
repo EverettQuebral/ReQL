@@ -1,0 +1,19 @@
+type Props {
+  className: String!
+  id: String
+  src: String
+}
+
+type Attributes {
+  text: String
+}
+
+type Config {
+  type: String!
+  props: Props
+  attributes: Attributes
+}
+
+type Query {
+  getConfig: Config
+}
