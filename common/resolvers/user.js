@@ -1,4 +1,4 @@
-import { find } from 'lodash';
+import { find } from 'lodash/find';
 import { 
   User,
   UserInput,
@@ -56,6 +56,7 @@ export default {
   Mutation: {
     addUser: (root, args, context) => {
       const user = args.input
+      user.id = Math.random().toString(36).substr(2, 9);
       myFavoriteArtists.push(user)
       const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User')
       return statusMessage

@@ -4,9 +4,6 @@ const bodyParser = require("body-parser");
 const debug = require('debug')('app:server');
 const cors = require('cors')
 
-// for websocket support
-
-
 import { schema } from '../schema';
 import { request } from "https";
 

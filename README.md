@@ -459,7 +459,66 @@ In **graphqlExpress**, the handlers for the **Query** and **Mutation** will rece
 
 And lastly it returned a *statusMessage* where it says **SUCCESS**  
 
-Now to the next topic
+Adding the last bit of pieces here where the necessary graphql files are added under the /schema folder.
+address.graphql
+```javascript
+type Address {
+  id: ID!
+  address1: String!
+  address2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+fragment addressDetails on Address {
+  address1
+  city
+  state
+  zip
+}
+
+input AddressInput {
+  address1: String!
+  address2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+type Query {
+  address: Address!
+}
+```
+And the statusmessage.graphql
+```javascript
+type StatusMessage {
+    status_code: Int!
+    message: String!
+    description: String!
+}
+```
+
+At this point we should be able to run the server and see the GraphiQL interface and run some query.  Let's now install the necessary packages then run the server
+```bash
+$ npm install
+$ npm run server
+
+> NODE_ENV=DEVELOPMENT babel-node server/server.js --presets es2015,stage-2
+
+Resolvers  [ { Query:
+     { findUser: [Function: findUser],
+       getUsers: [Function: getUsers] },
+    Mutation: { addUser: [Function: addUser] } } ]
+GraphQL Server is now running on http://localhost:3000/graphql
+View GraphiQL at http://localhost:3000/graphiql
+```
+And point your browser to the http://localhost:3000/graphiql
+
+
+
 
 
 
