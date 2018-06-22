@@ -457,7 +457,9 @@ In **graphqlExpress**, the handlers for the **Query** and **Mutation** will rece
 * *args* let's us pass the payload just like in the example, we passed in the UserInput
 * *context* is when we can pass headers, request, session information.  Also a good place to pass API_KEY and such
 
-And lastly it returned a *statusMessage* where it says **SUCCESS**
+And lastly it returned a *statusMessage* where it says **SUCCESS**  
+
+Now to the next topic
 
 
 
