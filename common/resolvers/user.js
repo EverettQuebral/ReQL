@@ -44,16 +44,36 @@ const myFavoriteArtists = [
 
 export default {
   Query: {
+    /**
+     * findUser(id: "uniqueId")
+     */
     findUser: (root, args, context) => {
       const id = args.id
       const user = find(myFavoriteArtists, { 'id' : id })
       return user
     },
+    /**
+     * getUsers 
+     */
     getUsers: (root, args, context) => {
       return myFavoriteArtists
     }
   },
   Mutation: {
+    /**
+     * addUser(input: {
+     *  first_name: String!
+     *  last_name: String!
+     *  ...
+     *  address: {
+     *    address1: String1
+     *    address2: String1
+     *    ...
+     *  }
+     * }) {
+     *  message 
+     * }
+     */
     addUser: (root, args, context) => {
       const user = args.input
       user.id = Math.random().toString(36).substr(2, 9);

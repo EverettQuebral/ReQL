@@ -434,21 +434,42 @@ Before we end this section, let's just take a look back at the resolver for the 
 // some code removed
 export default {
   Query: {
+    /**
+     * findUser(id: "uniqueId")
+     */
     findUser: (root, args, context) => {
-      const id = args.id;
-      const user = find(myFavoriteArtists, { 'id' : id });
-      return user;
+      const id = args.id
+      const user = find(myFavoriteArtists, { 'id' : id })
+      return user
     },
+    /**
+     * getUsers 
+     */
     getUsers: (root, args, context) => {
-      return myFavoriteArtists;
+      return myFavoriteArtists
     }
   },
   Mutation: {
+    /**
+     * addUser(input: {
+     *  first_name: String!
+     *  last_name: String!
+     *  ...
+     *  address: {
+     *    address1: String1
+     *    address2: String1
+     *    ...
+     *  }
+     * }) {
+     *  message 
+     * }
+     */
     addUser: (root, args, context) => {
-      const user = args.input;
-      myFavoriteArtist.push(user);
-      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User');
-      return statusMessage;
+      const user = args.input
+      user.id = Math.random().toString(36).substr(2, 9);
+      myFavoriteArtists.push(user)
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User')
+      return statusMessage
     }
   }
 }
