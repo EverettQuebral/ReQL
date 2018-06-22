@@ -14,7 +14,14 @@ const myFavoriteArtists = [
     id: "xxxx",
     first_name: "Michael",
     last_name: "Jackson",
-    address: "Los Angeles",
+    address: {
+      address1: "1st Street",
+      address2: "",
+      city: "Boston",
+      state: "MA",
+      zip: "64848",
+      country: "USA",
+    },
     email: "michael@jackson.com",
     password: "secret"
   },
@@ -22,7 +29,14 @@ const myFavoriteArtists = [
     id: "yyyy",
     first_name: "Bruno",
     last_name: "Mars",
-    address: "Hawaii",
+    address: {
+      address1: "1st Street",
+      address2: "",
+      city: "Boston",
+      state: "MA",
+      zip: "64848",
+      country: "USA",
+    },
     email: "bruno@mars.com",
     password: "secret secret"
   }
@@ -31,19 +45,20 @@ const myFavoriteArtists = [
 export default {
   Query: {
     findUser: (root, args, context) => {
-      const id = args.id;
-      const user = find(myFavoriteArtists, { 'id' : id });
-      return user;
+      const id = args.id
+      const user = find(myFavoriteArtists, { 'id' : id })
+      return user
     },
     getUsers: (root, args, context) => {
-      return myFavoriteArtists;
+      return myFavoriteArtists
     }
   },
   Mutation: {
     addUser: (root, args, context) => {
-      const user = args.input;
-      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User');
-      return statusMessage;
+      const user = args.input
+      myFavoriteArtists.push(user)
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User')
+      return statusMessage
     }
   }
 }
