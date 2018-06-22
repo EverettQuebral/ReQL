@@ -37,6 +37,7 @@
     "graphql-tools": "^3.0.2",
     "merge-graphql-schemas": "^1.5.1",
     "node-fetch": "^2.1.2",
+    "npx": "^10.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "start-server-webpack-plugin": "^2.2.5",
