@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const debug = require('debug')('app:server');
 const cors = require('cors')
 
-import { schema } from '../schema';
+import { schema } from './schema';
 import { request } from "https";
 
 const PORT = process.env.PORT || 3000;

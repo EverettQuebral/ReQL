@@ -2,10 +2,10 @@ import { makeExecutableSchema } from 'graphql-tools'
 import path from 'path'
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
 
-const typesArray = fileLoader(path.join(__dirname, './common/schemas'))
+const typesArray = fileLoader(path.join(__dirname, '../common/schemas'))
 const typeDefs = mergeTypes(typesArray, { all : true })
 
-const resolversArray = fileLoader(path.join(__dirname, './common/resolvers'));
+const resolversArray = fileLoader(path.join(__dirname, '../common/resolvers'));
 const resolvers = mergeResolvers(resolversArray);
 
 console.log("Resolvers ", resolvers)
