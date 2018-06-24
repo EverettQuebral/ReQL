@@ -521,6 +521,25 @@ type StatusMessage {
     description: String!
 }
 ```
+And lastly, the **schema.js** that we imported to the **server.js** where all the resolvers and types are merged together
+```javascript
+import { makeExecutableSchema } from 'graphql-tools'
+import path from 'path'
+import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas'
+
+const typesArray = fileLoader(path.join(__dirname, '../common/schemas'))
+const typeDefs = mergeTypes(typesArray, { all : true })
+
+const resolversArray = fileLoader(path.join(__dirname, '../common/resolvers'));
+const resolvers = mergeResolvers(resolversArray);
+
+console.log("Resolvers ", resolvers)
+
+export const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+```
 
 At this point we should be able to run the server and see the GraphiQL interface and run some query.  Let's now install the necessary packages then run the server
 ```bash
