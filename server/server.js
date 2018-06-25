@@ -32,7 +32,7 @@ app.post(
 
 const gql = String.raw;
 
-// TODO:: this endpoint should only be accessible in DEVELOPMENT model
+// TODO:: this endpoint should only be accessible in DEVELOPMENT mode, should be part of the deployment mechanism
 if (process.env.NODE_ENV === "DEVELOPMENT"){
   debug('Running GraphiQL ', process.env.NODE_ENV);
   app.get(
