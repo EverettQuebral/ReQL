@@ -40,35 +40,35 @@ if (process.env.NODE_ENV === "DEVELOPMENT"){
     graphiqlExpress({
       endpointURL: "/graphql",
       query: gql`
-        query {
-          getUsers{
-            first_name
-            last_name
-            email
-            password
-            id
-            address{
-              state
-              zip
-              country
-            }
-          }
-          
-          findUser(id:"xxxx"){
-            first_name
-          }
-          
-          getConfig{
-            type
-            props {
-              className
-              id
-            }
-            attributes {
-              text
-            }
-          }
-        }
+query {
+  getUsers{
+    first_name
+    last_name
+    email
+    password
+    id
+    address{
+      state
+      zip
+      country
+    }
+  }
+  
+  findUser(id:"xxxx"){
+    first_name
+  }
+  
+  getConfig{
+    type
+    props {
+      className
+      id
+    }
+    attributes {
+      text
+    }
+  }
+}
       `
     })
   );
