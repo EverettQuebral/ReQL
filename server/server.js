@@ -32,7 +32,7 @@ app.post(
 
 const gql = String.raw;
 
-// TODO:: this endpoint should only be accessible in DEVELOPMENT model
+// TODO:: this endpoint should only be accessible in DEVELOPMENT mode, should be part of the deployment mechanism
 if (process.env.NODE_ENV === "DEVELOPMENT"){
   debug('Running GraphiQL ', process.env.NODE_ENV);
   app.get(
@@ -40,35 +40,35 @@ if (process.env.NODE_ENV === "DEVELOPMENT"){
     graphiqlExpress({
       endpointURL: "/graphql",
       query: gql`
-        query {
-          getUsers{
-            first_name
-            last_name
-            email
-            password
-            id
-            address{
-              state
-              zip
-              country
-            }
-          }
-          
-          findUser(id:"xxxx"){
-            first_name
-          }
-          
-          getConfig{
-            type
-            props {
-              className
-              id
-            }
-            attributes {
-              text
-            }
-          }
-        }
+query {
+  getUsers{
+    first_name
+    last_name
+    email
+    password
+    id
+    address{
+      state
+      zip
+      country
+    }
+  }
+  
+  findUser(id:"xxxx"){
+    first_name
+  }
+  
+  getConfig{
+    type
+    props {
+      className
+      id
+    }
+    attributes {
+      text
+    }
+  }
+}
       `
     })
   );
