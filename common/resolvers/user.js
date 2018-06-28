@@ -8,6 +8,17 @@ import {
   StatusMessage 
 } from '../../common/index'
 
+const addresses = [
+  {
+    id: '1',
+    address1: '2211 S 2nd Street',
+    address2: '',
+    city: 'San Jose',
+    state: 'CA',
+    zip: '95148',
+    country: 'USA'
+  }
+]
 
 const myFavoriteArtists = [
   {
@@ -40,7 +51,7 @@ const myFavoriteArtists = [
     email: "bruno@mars.com",
     password: "secret secret"
   }
-];
+]
 
 export default {
   Query: {
@@ -57,6 +68,10 @@ export default {
      */
     getUsers: (root, args, context) => {
       return myFavoriteArtists
+    },
+
+    getAddresses: (root, args, context) => {
+      return addresses
     }
   },
   Mutation: {
@@ -79,6 +94,21 @@ export default {
       user.id = Math.random().toString(36).substr(2, 9);
       myFavoriteArtists.push(user)
       const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully entered the new User')
+      return statusMessage
+    },
+
+    addAddress: (root, args, context) => {
+      //const address = args.input
+      console.log(args);
+      const address1 = args.address1
+      const address2 = args.address2
+      const city = args.city
+      const state = args.state
+      const zip = args.zip
+      const country = args.country
+      const address = new AddressInput(address1, address2, city, state, zip, country)
+      addresses.push(address)
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully added an address')
       return statusMessage
     }
   }

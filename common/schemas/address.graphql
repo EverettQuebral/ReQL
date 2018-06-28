@@ -26,5 +26,14 @@ input AddressInput {
 
 type Query {
   address: Address!
+  getAddresses: [Address!]
 }
 
+type Mutation {
+  addAddress(address1: String!, 
+      address2: String, 
+      city: String!,
+      state: String!,
+      zip: String!,
+      country:String!): StatusMessage
+}
