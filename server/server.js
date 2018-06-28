@@ -4,6 +4,12 @@ const bodyParser = require("body-parser");
 const debug = require('debug')('app:server');
 const cors = require('cors')
 
+import { createServer } from 'http'
+import { execute, subscribe } from 'graphql'
+import { PubSub } from 'graphql-subscriptions'
+import { SubscriptionServer } from 'subscriptions-transport-ws'
+
+
 import { schema } from './schema';
 import { request } from "https";
 
@@ -11,6 +17,9 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());
+
+const pubsub = new PubSub()
+const server = createServer(app);
 
 // we may need to add a middleware for handling the authorization/authentication
 app.post(
@@ -76,8 +85,21 @@ query {
 
 app.use(express.static("public"));
 
-app.listen(PORT, () =>{
-  console.log(`GraphQL Server is now running on http://localhost:${PORT}/graphql`);
-  console.log(`View GraphiQL at http://localhost:${PORT}/graphiql`);
-});
+// app.listen(PORT, () =>{
+//   console.log(`GraphQL Server is now running on http://localhost:${PORT}/graphql`);
+//   console.log(`View GraphiQL at http://localhost:${PORT}/graphiql`);
+// });
+
+server.listen(PORT, () => {
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema: schema
+  },
+  {
+    server: server,
+    path: '/subscriptions'
+  })
+})
+
 
