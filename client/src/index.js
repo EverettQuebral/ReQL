@@ -4,7 +4,6 @@ import './index.css'
 import App from './App'
 import Page from './components/Page'
 import registerServiceWorker from './registerServiceWorker'
-// import { HttpLink, InMemoryCache, ApolloClient } from 'apollo-client-preset'
 import { HttpLink, InMemoryCache, ApolloClient } from 'apollo-boost'
 import { ApolloLink, split } from 'apollo-link'
 import { ApolloProvider } from 'react-apollo'
@@ -25,7 +24,6 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        {/* <App /> */}
         <Container />
     </ApolloProvider>,
     document.getElementById('root')

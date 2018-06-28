@@ -29,17 +29,17 @@ class AddAddress extends Component {
     return (
       <div>
         <form name="add-address" onSubmit={this.handlePost}>
-          <input type='string' name='address1' 
+          <input type='string' name='address1' placeholder='Address 1'
             onChange={e => this.setState({address1: e.target.value})}/>
-          <input type='string' name='address2' 
+          <input type='string' name='address2' placeholder='Address 2'
             onChange={e => this.setState({address2: e.target.value})}/>
-          <input type='string' name='city'
+          <input type='string' name='city' placeholder='City'
             onChange={e => this.setState({city: e.target.value})}/>
-          <input type='string' name='state'
+          <input type='string' name='state' placeholder='State'
             onChange={e => this.setState({state: e.target.value})}/>
-          <input type='string' name='zip'
+          <input type='string' name='zip' placeholder='Zip'
             onChange={e => this.setState({zip: e.target.value})}/>
-          <input type='string' name='country'
+          <input type='string' name='country' placeholder='Country'
             onChange={e => this.setState({country: e.target.value})}/>
           <input type='submit' name='Add Address'/>
         </form>
