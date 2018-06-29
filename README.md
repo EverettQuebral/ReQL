@@ -1,5 +1,7 @@
 # Building React powered by GraphQL application
 
+## (Work in Progress)
+
 The intention of this document is help beginners create an application using **React**, **GraphQL**, and **Apollo**.  There are some other requirements but assuming that the audience knows **NodeJS**, **JavaScript**, **Babel**, etc.  Also the document requires the audience some knowledge about **React**, **GraphQL** and **Apollo** as the intentional result of this manual is to provide a working application that can scale to most known use case.
 
 # Code Structure
@@ -547,7 +549,6 @@ $ npm install
 $ npm run server
 
 > NODE_ENV=DEVELOPMENT babel-node server/server.js --presets es2015,stage-2
-
 Resolvers  [ { Query:
      { findUser: [Function: findUser],
        getUsers: [Function: getUsers] },

@@ -30,14 +30,10 @@ const link = split(
 )
 
 const client = new ApolloClient({
-  // link : ApolloLink.from([httpLink]),
   link: ApolloLink.from([link]),
   cache: new InMemoryCache(),
   connectToDevTools: true
 })
-
-
-//ReactDOM.render(<Page />, document.getElementById('root'));
 
 ReactDOM.render(
   <ApolloProvider client={client}>
