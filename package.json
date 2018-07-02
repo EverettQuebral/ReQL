@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=DEVELOPMENT PORT=4000 babel-node server/server.js --presets es2015,stage-2",
     "server": "NODE_ENV=DEVELOPMENT PORT=4000 babel-node server/server.js --presets es2015,stage-2"
   },
   "repository": {
