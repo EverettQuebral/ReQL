@@ -13,6 +13,7 @@ import './Container.css'
 import AddAddress from './AddAddress'
 import Page from './Page'
 import AddUser from './AddUser'
+import Stocks from './Stocks'
 
 class Container extends Component {
   constructor(props){
@@ -25,6 +26,7 @@ class Container extends Component {
         <Link to='/' title='Main'>Main</Link>
         <Link to='/address' title='Add Address'>Add Address</Link>
         <Link to='/user' title='Add User'>Add User</Link>
+        <Link to='/stocks' title='Stocks'>Stocks</Link>
       </nav>
     )
   }
@@ -37,6 +39,7 @@ class Container extends Component {
             <Route exact path='/' component={Page} />
             <Route exact path='/address' component={AddAddress} />
             <Route exact path='/user' component={AddUser} />
+            <Route exact path='/stocks' component={Stocks} />
           </Switch>
         </Fragment>
       </Router>
