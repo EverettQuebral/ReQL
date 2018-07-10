@@ -109,13 +109,8 @@ LinkedList.prototype.addToTail = function(value){
 }
 
 LinkedList.prototype.removeHead = function(){
-  // the list doesn't have a head
   if (!this.head) return null;
-
-  // get the value of the head
   let value = this.head.value;
-
-  // move the pointer of the head to the next node
   this.head = this.head.next;
 
   if (this.head) { 
@@ -128,13 +123,8 @@ LinkedList.prototype.removeHead = function(){
 }
 
 LinkedList.prototype.removeTail = function(){
-  // the list doesn't have tail
   if (!this.tail) return null;
-
-  // get the value of the tail
   let value = this.tail.value;
-
-  // move the pointer of the tail to the previous node
   this.tail = this.tail.prev;
 
   if (this.tail) {
@@ -147,7 +137,6 @@ LinkedList.prototype.removeTail = function(){
 }
 
 LinkedList.prototype.search = function(value){
-  // start with the head
   let currentNode = this.head;
   while (currentNode ){
     if (currentNode.value === value) return currentNode;
