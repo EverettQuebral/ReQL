@@ -1,3 +1,16 @@
+type Feed {
+  author: String,
+  comment: String
+}
+
 type Subscription {
-  feedSubscription: String!
+  feedAdded: Feed
+}
+
+type Query {
+  feeds: [Feed]
+}
+
+type Mutation {
+  addFeed(author:String, comment:String): Feed
 }

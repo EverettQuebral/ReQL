@@ -6,7 +6,6 @@ const cors = require('cors')
 
 import { createServer } from 'http'
 import { execute, subscribe } from 'graphql'
-import { PubSub } from 'graphql-subscriptions'
 import { SubscriptionServer } from 'subscriptions-transport-ws'
 
 
@@ -18,7 +17,6 @@ const app = express();
 
 app.use(cors());
 
-const pubsub = new PubSub()
 const server = createServer(app);
 
 // we may need to add a middleware for handling the authorization/authentication

@@ -7,11 +7,15 @@ import { gql } from 'apollo-boost'
 class Stocks extends Component {
   render (){
     return (
-      <Subscription subscription={STOCKS_SUBSCRIPTION}>
-        {({ data, loading }) => (
-          <div>Data</div>
-        )}
-      </Subscription>
+      <Fragment>
+        <Subscription subscription={STOCKS_SUBSCRIPTION}>
+          {({ data, loading, error }) => {
+            if (error) return <div>Error : {error} </div>
+            if (data) return <div>Data {data.feedAdded.author} </div>
+            if (loading) return <div>Loading</div>
+          }}
+        </Subscription>
+      </Fragment>
     )
   }
 }
@@ -19,11 +23,14 @@ class Stocks extends Component {
 
 const STOCKS_SUBSCRIPTION = gql `
 subscription {
-  feedSubscription
+  feedAdded {
+    comment
+    author
+  }
 } 
 `
 const StocksWithSubscription = graphql(STOCKS_SUBSCRIPTION, {
-  name: 'stocksWithSubscription',
+  name: 'feedAdded',
   options: {
     errorPolicy: 'ignore'
   }
