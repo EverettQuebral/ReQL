@@ -3,14 +3,22 @@ type Feed {
   comment: String
 }
 
+type Message {
+  author: String,
+  message: String
+}
+
 type Subscription {
   feedAdded: Feed
+  messageAdded: Message
 }
 
 type Query {
   feeds: [Feed]
+  messages: [Message]
 }
 
 type Mutation {
   addFeed(author:String, comment:String): Feed
+  sendMessage(author: String, message:String): Message
 }
