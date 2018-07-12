@@ -8,26 +8,43 @@ class ChatSender extends Component {
     message: ''
   }
 
-  handlePost = async (e) => {
-    console.log('handling sending message')
-    e.preventDefault()
-    const { author, message } = this.state
-    await this.props.sendMessage({
-      variables: { author, message }
-    })
-  }
+  // handlePost = async (e) => {
+  //   console.log('handling sending message')
+  //   e.preventDefault()
+  //   const { author, message } = this.state
+  //   await this.props.sendMessage({
+  //     variables: { author, message }
+  //   })
+  // }
 
   render(){
     return (
-      <div>
-        <form name='send-message' onSubmit={this.handlePost}>
-          <input type='string' name='author' placeholder='Author'
-            onChange={e => this.setState({author: e.target.value})}/>
-          <input type='string' name='message' placeholder='Message'
-            onChange={e => this.setState({message: e.target.value})}/>
-          <input type='submit' name='Send'/>
-        </form>
-      </div>
+      <Mutation mutation={SEND_MESSAGE}>
+        {(sendMessage, {data})=>(
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              sendMessage({ variables: this.state })
+              this.props.history.replace('/')
+            }}          
+          >
+            <input type='string' name='author'
+             onChange={e => this.setState({author: e.target.value})}/>
+            <input type='string' name='message' 
+             onChange={e => this.setState({message: e.target.value})}/>
+            <input type='submit' name='Send'/>
+          </form>
+        )}
+      </Mutation>
+      // <div>
+      //   <form name='send-message' onSubmit={this.handlePost}>
+      //     <input type='string' name='author' placeholder='Author'
+      //       onChange={e => this.setState({author: e.target.value})}/>
+      //     <input type='string' name='message' placeholder='Message'
+      //       onChange={e => this.setState({message: e.target.value})}/>
+      //     <input type='submit' name='Send'/>
+      //   </form>
+      // </div>
     )
   }
 }

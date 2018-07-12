@@ -8,6 +8,11 @@ class ChatMessages extends Component {
     components: [],
     data: []
   }
+
+  componentWillReceiveProps(props){
+    console.log('received props ', props)
+  }
+  
   render(){
     const child = this.state.children
     const components = this.state.components
