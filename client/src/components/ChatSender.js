@@ -19,13 +19,18 @@ class ChatSender extends Component {
 
   render(){
     return (
-      <Mutation mutation={SEND_MESSAGE}>
+      <Mutation mutation={SEND_MESSAGE} onCompleted={()=>{
+        console.log('completed')
+        this.state = {
+          author: '',
+          message: ''
+        }
+        }}>
         {(sendMessage, {data})=>(
           <form
             onSubmit={e => {
               e.preventDefault()
               sendMessage({ variables: this.state })
-              this.props.history.replace('/')
             }}          
           >
             <input type='string' name='author'

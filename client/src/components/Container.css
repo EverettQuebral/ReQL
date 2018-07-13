@@ -1,3 +1,7 @@
 form input {
   display : block;
 }
+
+.chat-messages {
+  margin: 10px;
+}

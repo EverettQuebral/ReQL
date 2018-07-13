@@ -4,6 +4,12 @@ import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
 import { User, UserInput, StatusMessage, UserInputMessage, Address, AddressInput } from '../common'
+import { 
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input
+} from 'reactstrap'
 
 class AddUser extends Component {
   state = {

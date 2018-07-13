@@ -4,6 +4,14 @@ import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from 'reactstrap'
+
 class AddAddress extends Component {
   state = {
     address1: '',
@@ -28,21 +36,35 @@ class AddAddress extends Component {
   render(){
     return (
       <div>
-        <form name="add-address" onSubmit={this.handlePost}>
-          <input type='string' name='address1' placeholder='Address 1'
-            onChange={e => this.setState({address1: e.target.value})}/>
-          <input type='string' name='address2' placeholder='Address 2'
-            onChange={e => this.setState({address2: e.target.value})}/>
-          <input type='string' name='city' placeholder='City'
-            onChange={e => this.setState({city: e.target.value})}/>
-          <input type='string' name='state' placeholder='State'
-            onChange={e => this.setState({state: e.target.value})}/>
-          <input type='string' name='zip' placeholder='Zip'
-            onChange={e => this.setState({zip: e.target.value})}/>
-          <input type='string' name='country' placeholder='Country'
-            onChange={e => this.setState({country: e.target.value})}/>
-          <input type='submit' name='Add Address'/>
-        </form>
+        <Form name="add-address" onSubmit={this.handlePost}>
+          <FormGroup>
+            <input type='string' name='address1' placeholder='Address 1'
+              onChange={e => this.setState({address1: e.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <input type='string' name='address2' placeholder='Address 2'
+              onChange={e => this.setState({address2: e.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <input type='string' name='city' placeholder='City'
+              onChange={e => this.setState({city: e.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <input type='string' name='state' placeholder='State'
+              onChange={e => this.setState({state: e.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <input type='string' name='zip' placeholder='Zip'
+              onChange={e => this.setState({zip: e.target.value})}/>
+          </FormGroup>
+          <FormGroup>
+            <input type='string' name='country' placeholder='Country'
+              onChange={e => this.setState({country: e.target.value})}/>
+          </FormGroup>
+          <Button>
+            <input type='submit' name='Add Address'/>
+          </Button>
+        </Form>
       </div>
     )
   }

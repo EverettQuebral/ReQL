@@ -8,20 +8,17 @@ class ChatMessages extends Component {
     components: [],
     data: []
   }
-
-  componentWillReceiveProps(props){
-    console.log('received props ', props)
-  }
   
   render(){
     const child = this.state.children
     const components = this.state.components
     const i = 0;
-    const listItems = this.state.children.map((author, message)=><li>{author}: {message}</li>)
+    // const listItems = this.state.children.map((author, message)=><li>{author}: {message}</li>)
     let tempData = [];
+    let tempMessage = {};
 
     return (
-      <div>
+      <div className='chat-messages'>
         <Subscription subscription={MESSAGE_SUSBSCRIPTION}>
         {({data, loading, error}) => {
           if (error) return <div>Error: {error}</div>
@@ -29,10 +26,12 @@ class ChatMessages extends Component {
           return (
             <div>List of Messages
               { tempData = this.state.data }
-              { tempData.push(data.messageAdded)}
-              { this.state = { data: tempData} }
+              { console.log('tempdata ', tempData) }
+              { tempMessage = {author: data.messageAdded.author, message: data.messageAdded.message} }
+              { tempData.push(...this.props)} // this is causing the error
+              {/* { this.state = { data: tempData} } */}
               { console.log('test', this.state)}
-              <ul>{listItems}</ul>
+              {/* <ul>{listItems}</ul> */}
             </div>
           )
         }}
@@ -55,7 +54,8 @@ const ChatMessageWithSubscription = graphql(MESSAGE_SUSBSCRIPTION, {
   name: 'messageAdded',
   options: {
     errorPolicy: 'ignore'
-  }
+  },
+  props:  ({ownProps, mutate}) => ({ })
 })(ChatMessages)
 
 export default ChatMessageWithSubscription

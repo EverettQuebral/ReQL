@@ -10,7 +10,7 @@ import { ApolloLink, split } from 'apollo-link'
 import { ApolloProvider } from 'react-apollo'
 import { getMainDefinition } from 'apollo-utilities'
 import Container from './components/Container'
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const httpLink = new HttpLink({ uri: 'http://127.0.0.1:4000/graphql'})
 const wsLink = new WebSocketLink({

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import {
-  NavLink,
   Link,
   BrowserRouter as Router,
   Route,
@@ -16,6 +15,19 @@ import AddUser from './AddUser'
 import Stocks from './Stocks'
 import Chat from './Chat'
 
+import { 
+  Nav,
+  Navbar,
+  NavItem,
+  NavLink,
+  NavbarBrand,
+  Container as Cont,
+  Row,
+  Col
+} from 'reactstrap'
+
+
+
 class Container extends Component {
   constructor(props){
     super(props)
@@ -23,13 +35,35 @@ class Container extends Component {
 
   renderNavigation(){
     return (
-      <nav>
-        <Link to='/' title='Main'>Main</Link>
-        <Link to='/address' title='Add Address'>Add Address</Link>
-        <Link to='/user' title='Add User'>Add User</Link>
-        <Link to='/stocks' title='Stocks'>Stocks</Link>
-        <Link to='/chat' title='Chat'>Chat</Link>
-      </nav>
+      <Navbar color='light'>
+        <Cont>
+          <Row>
+            <Col xs='auto'>
+              <NavbarBrand href='/'>React - GraphQL Proptotype</NavbarBrand>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs='3'>
+            </Col>
+            <Col xs='auto'>
+              <Nav className='ml-auto' horizontal>
+                <NavItem>
+                  <NavLink href='/address'>Address</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href='/user'>User</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href='/stocks'>Stocks</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink href='/chat'>Chat</NavLink>
+                </NavItem>
+              </Nav>
+            </Col>
+          </Row>
+        </Cont>
+      </Navbar>
     )
   }
   render() {
