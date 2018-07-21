@@ -12,9 +12,9 @@ import { getMainDefinition } from 'apollo-utilities'
 import Container from './components/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const httpLink = new HttpLink({ uri: 'http://127.0.0.1:4000/graphql'})
+const httpLink = new HttpLink({ uri: 'http://192.168.1.111:4000/graphql'})
 const wsLink = new WebSocketLink({
-  uri: 'ws://127.0.0.1:4000/subscriptions',
+  uri: 'ws://192.168.1.111:4000/subscriptions',
   options: {
     reconnect: true
   }

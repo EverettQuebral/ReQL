@@ -10,6 +10,7 @@ import {
   InputGroupText,
   Input
 } from 'reactstrap'
+import Header from './Header';
 
 class AddUser extends Component {
   state = {
@@ -57,6 +58,7 @@ class AddUser extends Component {
   render() {
     return (
       <div>
+        <Header />
         <form name='add-user' onSubmit={this.handlePost}>
           <input type='string' name='first_name' placeholder='First Name'
             onChange={e => this.setState({user:{first_name: e.target.value}})} />

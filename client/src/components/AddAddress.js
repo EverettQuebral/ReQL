@@ -11,6 +11,7 @@ import {
   Label,
   Input
 } from 'reactstrap'
+import Header from './Header';
 
 class AddAddress extends Component {
   state = {
@@ -36,6 +37,7 @@ class AddAddress extends Component {
   render(){
     return (
       <div>
+        <Header />
         <Form name="add-address" onSubmit={this.handlePost}>
           <FormGroup>
             <input type='string' name='address1' placeholder='Address 1'
