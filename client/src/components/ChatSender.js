@@ -33,9 +33,9 @@ class ChatSender extends Component {
               sendMessage({ variables: this.state })
             }}          
           >
-            <input type='string' name='author'
+            <input type='string' name='author' placeholder='Author'
              onChange={e => this.setState({author: e.target.value})}/>
-            <input type='string' name='message' 
+            <input type='string' name='message' placeholder='Message'
              onChange={e => this.setState({message: e.target.value})}/>
             <input type='submit' name='Send'/>
           </form>
