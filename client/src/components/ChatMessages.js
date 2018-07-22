@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { gql } from 'apollo-boost'
 import { graphql, Subscription } from 'react-apollo'
+import Message from './Message'
 
 class ChatMessages extends Component {
   state = {
@@ -11,32 +12,29 @@ class ChatMessages extends Component {
   
   render(){
     const child = this.state.children
-    const components = this.state.components
-    const i = 0;
-    // const listItems = this.state.children.map((author, message)=><li>{author}: {message}</li>)
-    var tempData = [];
-    var tempMessage = {};
+    const currentComponents = this.state.components
+
 
     return (
       <div className='chat-messages'>
+        <div id='messages'>
+          {this.state.components}
+        </div>
         <Subscription subscription={MESSAGE_SUSBSCRIPTION}>
         {({data, loading, error}) => {
           if (error) return <div>Error: {error}</div>
           if (loading) return <div>Loading: </div>
-          return (
+          if (data) {
             <div>List of Messages
               { console.log( 'data received', data ) }
-              <div>Author : { data.messageAdded.author } </div>
-              <div>Message : { data.messageAdded.message } </div>
-              {/* { tempData = data.messageAdded } */}
-              { console.log('tempdata received', tempData) }
-              {/* { tempMessage = {author: data.messageAdded.author, message: data.messageAdded.message} } */}
-              {/* { tempData.push(...this.props)} // this is causing the error */}
-              {/* { this.state = { data: tempData} } */}
-              {/* { console.log('test', this.state)} */}
-              {/* <ul>{listItems}</ul> */}
+              { currentComponents.push(<Message author={data.messageAdded.author} message={data.messageAdded.message}/>) }
+              { this.state = { components: currentComponents } }
+              {/* { this.state = {components : <Message author={data.messageAdded.author} message={data.messageAdded.message}/>} } */}
+              { console.log(this.state) }
+
             </div>
-          )
+          }
+          return <div>Chat</div>
         }}
         </Subscription>
       </div>
