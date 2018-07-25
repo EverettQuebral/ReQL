@@ -22,4 +22,6 @@ input UserInput {
 
 type Mutation {
     addUser(input: UserInput): StatusMessage
+    addChatter(first_name:String, last_name:String): StatusMessage
+    starUser(id: String): StatusMessage
 }

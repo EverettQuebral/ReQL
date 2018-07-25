@@ -1,24 +1,17 @@
-type Feed {
-  author: String,
-  comment: String
-}
-
 type Message {
+  id: String,
   author: String,
   message: String
 }
 
 type Subscription {
-  feedAdded: Feed
-  messageAdded: Message
+  messageAdded(channel:String!) : Message
 }
 
 type Query {
-  feeds: [Feed]
   messages: [Message]
 }
 
 type Mutation {
-  addFeed(author:String, comment:String): Feed
-  sendMessage(author: String, message:String): Message
+  sendMessage(channel:String!, author: String, message:String): Message
 }

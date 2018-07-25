@@ -33,6 +33,8 @@ class ChatSender extends Component {
               sendMessage({ variables: this.state })
             }}          
           >
+            <input type='string' name='channel' placeholder='Channel'
+             onChange={e => this.setState({channel: e.target.value})}/>
             <input type='string' name='author' placeholder='Author'
              onChange={e => this.setState({author: e.target.value})}/>
             <input type='string' name='message' placeholder='Message'
@@ -55,8 +57,9 @@ class ChatSender extends Component {
 }
 
 const SEND_MESSAGE = gql `
-  mutation SendMessage($author: String!, $message: String!){
+  mutation SendMessage($channel: String!, $author: String!, $message: String!){
     sendMessage(
+      channel: $channel
       author: $author
       message: $message
     ){
