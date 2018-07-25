@@ -14,6 +14,7 @@ class ChatMessages extends Component {
     
     const child = this.state.children
     const currentComponents = this.state.components
+
     return (
       <div className='chat-messages'>
         <div id='messages'>
@@ -29,6 +30,7 @@ class ChatMessages extends Component {
                 <div>List of Messages
                   
                   { console.log( 'data received', data ) }
+
 
                 </div>
               }

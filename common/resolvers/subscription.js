@@ -21,9 +21,14 @@ export default {
   },
   Mutation: {
     sendMessage: (root, args, context, info) => {
-      pubsub.publish(MESSAGE_ADDED, {messageAdded: args})
       MESSAGE.push(args)
+
       console.log('Mutation Fires' , MESSAGE)
+
+      pubsub.publish(MESSAGE_ADDED, {messageAdded: args})
+      
+      console.log(MESSAGE)
+
       return args
     }
   }
