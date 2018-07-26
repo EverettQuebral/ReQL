@@ -2,7 +2,7 @@ const MESSAGE_ADDED = 'MESSAGE_ADDED'
 
 import { pubsub } from '../../server/subscription'
 
-const MESSAGE = []
+const MESSAGES = []
 
 export default {
   Subscription: {
@@ -16,20 +16,21 @@ export default {
   },
   Query: {
     messages: (root, args, context, info) => {
-      return MESSAGE
+      return MESSAGES
     }
   },
   Mutation: {
     sendMessage: (root, args, context, info) => {
-      MESSAGE.push(args)
-
-      console.log('Mutation Fires' , MESSAGE)
-
+      const message = {
+        author: args.author,
+        message: args.message,
+        id: MESSAGES.length + 1
+      }
+      MESSAGES.push(message)
+      console.log('Mutation Fires' , message)
       pubsub.publish(MESSAGE_ADDED, {messageAdded: args})
-      
-      console.log(MESSAGE)
 
-      return args
+      return message
     }
   }
 }
