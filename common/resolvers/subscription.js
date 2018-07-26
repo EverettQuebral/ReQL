@@ -28,7 +28,7 @@ export default {
       }
       MESSAGES.push(message)
       console.log('Mutation Fires' , message)
-      pubsub.publish(MESSAGE_ADDED, {messageAdded: args})
+      pubsub.publish(MESSAGE_ADDED, message)
 
       return message
     }
