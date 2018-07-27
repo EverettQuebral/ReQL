@@ -26,10 +26,10 @@ export default {
         message: args.message,
         id: MESSAGES.length + 1
       }
-      MESSAGES.push(message)
+      
       console.log('Mutation Fires' , message)
       pubsub.publish(MESSAGE_ADDED, message)
-
+      MESSAGES.push(message)
       return message
     }
   }
