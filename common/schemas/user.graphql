@@ -5,6 +5,7 @@ type User {
     address: Address
     email: String!
     password: String!
+    stars: Int
 }
 
 type Query {
@@ -18,6 +19,7 @@ input UserInput {
     address: AddressInput!
     email: String!
     password: String!
+    stars: Int
 }
 
 type Mutation {

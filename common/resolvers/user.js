@@ -68,6 +68,8 @@ const myFavoriteArtists = [
   }
 ]
 
+const starredUsers = []
+
 export default {
   Query: {
     /**
@@ -106,7 +108,8 @@ export default {
           country: "USA",
         },
         email: "adelle@adelle.com",
-        password: "secret secret"
+        password: "secret secret",
+        stars: 0
       }
       myFavoriteArtists.push(user)
       console.log('Adding Chatter')
@@ -115,7 +118,11 @@ export default {
     },
     starUser: (root, args, context) => {
       const userId = args.id
-      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully starred a user')
+      
+      if (starredUsers[userId]) starredUsers[userId] + 1
+      else starredUsers[userId] = 1
+
+      const statusMessage = new StatusMessage(200, 'SUCCESS', 'Successfully starred a user ' + userId)
       console.log("Mutation Star User")
       return statusMessage
     },
