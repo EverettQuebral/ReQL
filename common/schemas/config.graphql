@@ -1,17 +1,26 @@
 type Props {
-  className: String!
+  className: String
   id: String
   src: String
+  color: String
 }
 
 type Attributes {
   text: String
 }
 
+type Children {
+  type: String
+  children: [Children]
+  content: String
+  props: Props
+}
+
 type Config {
   type: String!
   props: Props
-  attributes: Attributes
+  content: String
+  children: [Children]
 }
 
 type Query {
