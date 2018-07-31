@@ -14,10 +14,12 @@ type Children {
   children: [Children]
   content: String
   props: Props
+  componentId: String
 }
 
 type Config {
   type: String!
+  componentId: String
   props: Props
   content: String
   children: [Children]

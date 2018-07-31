@@ -1,9 +1,11 @@
 
 const components = {
   "type": "Container",
+  "componentId": "container-1",
   "children" : [
     {
       "type": "Jumbotron",
+      "componentId": "Jumbotron-1",
       "children": [
         {
           "type": "Primitive",
@@ -20,9 +22,11 @@ const components = {
     },
     {
       "type": "Container",
+      "componentId": "container-2",
       "children":
       [{
           "type": "Alert",
+          "componentId": "alert-1",
           "props": {
             "color": "primary"
           },
@@ -30,6 +34,7 @@ const components = {
         },
         {
           "type": "Alert",
+          "componentId": "alert-2",
           "props": {
             "color": "secondary"
           },
@@ -37,6 +42,7 @@ const components = {
         },
         {
           "type": "Alert",
+          "componentId": "alert-3",
           "props": {
             "color": "success"
           },
@@ -44,8 +50,41 @@ const components = {
         },
         {
           "type": "Button",
-          "content": "All you are seeing here are dynamically generated from a JSON Config file"
+          "componentId": "button-1",
+          "content": "Button Here"
         }]
+    },
+    {
+      "type": "Primitive",
+      "content": `<p>An example of a form without any styling for now.  The form is highly configurable as the config are all coming from the server</p>`
+    },
+    {
+      "type": "Form",
+      "componentId": "form-1",
+      "children": [
+        {
+          "type": "FormGroup",
+          "componentId": "formgroup-1",
+          "children":[{
+            "type": "Primitive",
+            "content": `<label for='exampleEmail'>Email</label>`
+          },{
+            "type": "Primitive",
+            "content": `<input type='email' name='email' id='exampleEmail' placeholder='email here'/>`
+          }]
+        },
+        {
+          "type": "FormGroup",
+          "componetId": "formgroup-2",
+          "children":[{
+            "type": "Primitive",
+            "content": `<label for='examplePassword'>Password</label>`
+          },{
+            "type": "Primitive",
+            "content": `<input type='password' name='password' id='examplePassword' placeholder='password here'/>`
+          }]
+        }
+      ]
     }
   ]
 }
