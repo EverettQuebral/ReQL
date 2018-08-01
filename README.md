@@ -558,11 +558,9 @@ View GraphiQL at http://localhost:3000/graphiql
 ```
 And point your browser to the http://localhost:3000/graphiql
 
+You can try this application as it is deployed in a Free Web Dyno in Heroku at http://eqsystems.herokuapp.com just please take note that it might take sometime to load on a normal startup since heroku shuts down their free web dyno when no traffic is detected.
 
-
-
-
-
+Also a client app is available running under heroku which is also on a free web dyno http://eqsystemclient.herokuapp.com
 
 
 
