@@ -1,0 +1,10 @@
+type Images {
+    url: String!
+    title: String!
+    original: String!
+    description: String!
+}
+
+type Query {
+    astroImages: [Images]
+}
