@@ -1,0 +1,16 @@
+type AstroImage {
+  id: ID!
+  imageUrl: String!
+  title: String!
+  subtitle: String!
+  description: String!
+  fullsizeUrl: String!
+}
+
+type Query {
+  getAstroImages: [AstroImage]
+}
+
+type Mutation {
+  share(id: String, socialMedia: String!): StatusMessage
+}
